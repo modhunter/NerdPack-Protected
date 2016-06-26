@@ -1,0 +1,9 @@
+## Title: |r[|cff0070deNerdPack|r] Protected
+## Notes: A plugin for NerdPack.
+## Dependencies: NerdPack
+## Interface: 60200
+## Author: MrTheSoulz
+
+generic.lua
+firehack.lua
+core.lua
