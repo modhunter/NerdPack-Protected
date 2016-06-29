@@ -1,3 +1,11 @@
+NeP.Listener.register("ADDON_ACTION_FORBIDDEN", function(...)
+	local addon, event = ...
+	if addon == 'NerdPack-Protected' then
+		StaticPopup1:Hide()
+		NeP.Core.Print('Didnt find any unlocker, using facerool.')
+	end
+end)
+
 NeP.Engine.generic_check = false
 pcall(RunMacroText, "/run NeP.Engine.generic_check = true")
 

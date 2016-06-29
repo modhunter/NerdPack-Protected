@@ -1,11 +1,8 @@
 NeP.Engine.Unlocker = nil
 
-NeP.Listener.register("ADDON_ACTION_FORBIDDEN", function(...)
-	local addon, event = ...
-	if addon == 'NerdPack-Protected' then
-		StaticPopup1:Hide()
-		NeP.Core.Print('Didnt find any unlocker, using facerool.')
-	end
+NeP.Interface.CreatePlugin('|cffff0000Unlock!', function() 
+	pcall(RunMacroText, "/run NeP.Engine.generic_check = true")
+	if not NeP.Engine.generic_check then NeP.Core.Print('Failed to Unlock...') end
 end)
 
 C_Timer.NewTicker(1, (function()
