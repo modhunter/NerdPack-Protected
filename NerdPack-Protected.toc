@@ -5,5 +5,5 @@
 ## Author: MrTheSoulz
 
 generic.lua
-firehack.lua
+advanced.lua
 core.lua
