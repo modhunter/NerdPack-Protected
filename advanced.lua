@@ -4,25 +4,27 @@ function NeP.Engine.FireHack()
 		NeP.Engine.Unlocker = 'FireHack'
 		NeP.Core.Print('Found An Advanced Unlockerr')
 
-		-- Cast on ground
-		function NeP.Engine.CastGround(spell, target)
-			if UnitExists(target) then
-				NeP.Engine.Cast(spell, target)
-				CastAtPosition(ObjectPosition(target))
-				CancelPendingSpell()
-			end
-			if not NeP.timeOut.check('groundCast') then
-				NeP.timeOut.set('groundCast', 0.05, function()
-					NeP.Engine.Cast(spell)
-					if IsAoEPending() then
-						SetCVar("deselectOnClick", "0")
-						CameraOrSelectOrMoveStart(1)
-						CameraOrSelectOrMoveStop(1)
-						SetCVar("deselectOnClick", "1")
-						SetCVar("deselectOnClick", stickyValue)
-						CancelPendingSpell()
-					end
-				end)
+		if CancelPendingSpell then
+			-- Cast on ground
+			function NeP.Engine.CastGround(spell, target)
+				if UnitExists(target) then
+					NeP.Engine.Cast(spell, target)
+					CastAtPosition(ObjectPosition(target))
+					CancelPendingSpell()
+				end
+				if not NeP.timeOut.check('groundCast') then
+					NeP.timeOut.set('groundCast', 0.05, function()
+						NeP.Engine.Cast(spell)
+						if IsAoEPending() then
+							SetCVar("deselectOnClick", "0")
+							CameraOrSelectOrMoveStart(1)
+							CameraOrSelectOrMoveStop(1)
+							SetCVar("deselectOnClick", "1")
+							SetCVar("deselectOnClick", stickyValue)
+							CancelPendingSpell()
+						end
+					end)
+				end
 			end
 		end
 
