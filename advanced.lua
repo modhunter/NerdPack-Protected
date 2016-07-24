@@ -112,7 +112,7 @@ function NeP.Engine.FireHack()
 			local totalObjects = ObjectCount()
 			for i=1, totalObjects do
 				local Obj = ObjectWithIndex(i)
-				if UnitGUID(Obj) ~= nil and ObjectExists(Obj) then
+				if UnitGUID(Obj) and ObjectExists(Obj) then
 					if ObjectIsType(Obj, ObjectTypes.Unit) or ObjectIsType(Obj, ObjectTypes.GameObject) then
 						if NeP.Engine.Distance('player', Obj) <= 100 then
 							NeP.OM.addToOM(Obj)
