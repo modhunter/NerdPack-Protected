@@ -4,6 +4,6 @@
 ## Interface: 70000
 ## Author: MrTheSoulz
 
+core.lua
 generic.lua
 advanced.lua
-core.lua
