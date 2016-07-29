@@ -103,7 +103,7 @@ function NeP.Protected.Advanced()
 		return false
 	end
 
-	-- Firehack OM
+	-- Advanced OM
 	function NeP.OM.Maker()
 		local totalObjects = ObjectCount()
 		for i=1, totalObjects do
