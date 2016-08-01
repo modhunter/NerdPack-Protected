@@ -1,5 +1,5 @@
 NeP.Protected = {
-	Version = '1.0.1',
+	Version = '1.0.2',
 	Unlocker = nil,
 	uGeneric = false,
 	uAdvanced = false
@@ -15,7 +15,7 @@ NeP.Listener.register('ADDON_ACTION_FORBIDDEN', function(...)
 	end
 end)
 
-NeP.Interface.CreatePlugin('|cffff0000Unlock!', function() 
+NeP.Interface.CreatePlugin('|cffff0000Unlock! |rV:'..pT.Version, function() 
 	pcall(RunMacroText, '/run NeP.Protected.uGeneric = true')
 	if not pT.Generic then 
 		NeP.Core.Print('Failed to Unlock...')
@@ -23,13 +23,11 @@ NeP.Interface.CreatePlugin('|cffff0000Unlock!', function()
 	end
 end)
 
--- Try to find a generic unlocker
-pcall(RunMacroText, '/run NeP.Protected.uGeneric = true')
-
 C_Timer.NewTicker(1, (function()
 	local Running = NeP.Config.Read('bStates_MasterToggle', false)
-	local nTainted = pT.uGeneric or pT.uAdvanced
-	if nTainted and Running then
+	if Running and not pT.uGeneric and not pT.uAdvanced then
+		-- Try to find a generic unlocker
+		pcall(RunMacroText, '/run NeP.Protected.uGeneric = true')
 		-- Advanced
 		if IsHackEnabled then
 			pT.Advanced()
