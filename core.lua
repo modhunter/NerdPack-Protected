@@ -6,6 +6,7 @@ NeP.Protected = {
 }
 
 local pT = NeP.Protected
+local ranOnce = false
 
 NeP.Listener.register('ADDON_ACTION_FORBIDDEN', function(...)
 	local addon, event = ...
@@ -24,10 +25,13 @@ NeP.Interface.CreatePlugin('|cffff0000Unlock! |rV:'..pT.Version, function()
 end)
 
 C_Timer.NewTicker(1, (function()
-	local Running = NeP.Config.Read('bStates_MasterToggle', false)
-	if Running and not pT.uGeneric and not pT.uAdvanced then
-		-- Try to find a generic unlocker
-		pcall(RunMacroText, '/run NeP.Protected.uGeneric = true')
+	--local Running = NeP.Config.Read('bStates_MasterToggle', false)
+	if not pT.uGeneric and not pT.uAdvanced then
+		-- Everthing in here will only run once
+		if not ranOnce then
+			pcall(RunMacroText, '/run NeP.Protected.uGeneric = true')
+			ranOnce = true
+		end
 		-- Advanced
 		if IsHackEnabled then
 			pT.Advanced()
