@@ -4,7 +4,9 @@ function NeP.Protected.Advanced()
 	if CancelPendingSpell and CastAtPosition and IsAoEPending then
 		function NeP.Engine.CastGround(spell, target)
 			local stickyValue = GetCVar("deselectOnClick")
+			local rX, rY = math.random(), math.random()
 			local oX, oY, oZ = ObjectPosition(target)
+			if oX then oX = oX + rX; oY = oY + rY end
 			NeP.Engine.Cast(spell, target)
 			if oX then CastAtPosition(oX, oY, oZ) end
 			CancelPendingSpell()
