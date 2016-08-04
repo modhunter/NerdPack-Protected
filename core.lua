@@ -1,5 +1,5 @@
 NeP.Protected = {
-	Version = 1.3,
+	Version = 1.4,
 	Unlocker = nil,
 	cGeneric = false, -- Pcall
 	uGeneric = false, -- Loaded
@@ -59,7 +59,7 @@ C_Timer.NewTicker(1, (function()
 				NeP.Core.Print('|cffff0000Found:|r Advanced Unlocker')
 			end
 		-- Generic
-		elseif pT.uGeneric then
+		elseif pT.cGeneric then
 			pT.Generic()
 			pT.uGeneric = true
 			pT.Unlocker = 'Generic'
