@@ -6,7 +6,11 @@ function NeP.Protected.Advanced()
 			local stickyValue = GetCVar("deselectOnClick")
 			local rX, rY = math.random(), math.random()
 			local oX, oY, oZ = ObjectPosition(target)
+<<<<<<< HEAD
 			if oX then oX = oX + rX; oY = oY + rY end
+=======
+			local oX, oY = oX + rX, oY + rY
+>>>>>>> origin/master
 			NeP.Engine.Cast(spell, target)
 			if oX then CastAtPosition(oX, oY, oZ) end
 			CancelPendingSpell()

@@ -1,5 +1,9 @@
 NeP.Protected = {
+<<<<<<< HEAD
 	Version = 1.3,
+=======
+	Version = '1.1.1',
+>>>>>>> origin/master
 	Unlocker = nil,
 	cGeneric = false, -- Pcall
 	uGeneric = false, -- Loaded
