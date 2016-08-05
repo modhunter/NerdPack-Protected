@@ -41,7 +41,7 @@ NeP.DSL.RegisterConditon("advanced", function()
 end)
 
 C_Timer.NewTicker(1, (function()
-	--local Running = NeP.Config.Read('bStates_MasterToggle', false)
+	--local Running = NeP.DSL.get('toggle')('mastertoggle')
 	if not pT.uGeneric and not pT.uAdvanced then
 		-- Everthing in here will only run once
 		if not ranOnce then
