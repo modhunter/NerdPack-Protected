@@ -11,19 +11,6 @@ function NeP.Protected.Advanced()
 				NeP.Engine.Cast(spell)
 				if oX then CastAtPosition(oX, oY, oZ) end
 				CancelPendingSpell()
-				if not NeP.timeOut.check('groundCast') then
-					NeP.timeOut.set('groundCast', 0.05, function()
-						NeP.Engine.Cast(spell)
-						if IsAoEPending() then
-							SetCVar("deselectOnClick", "0")
-							CameraOrSelectOrMoveStart(1)
-							CameraOrSelectOrMoveStop(1)
-							SetCVar("deselectOnClick", "1")
-							SetCVar("deselectOnClick", stickyValue)
-							CancelPendingSpell()
-						end
-					end)
-				end
 			else
 				local stickyValue = GetCVar("deselectOnClick")
 				SetCVar("deselectOnClick", "0")
