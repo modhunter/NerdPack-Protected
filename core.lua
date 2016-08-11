@@ -1,5 +1,5 @@
 NeP.Protected = {
-	Version = 1.4,
+	Version = 1.5,
 	Unlocker = nil,
 	cGeneric = false, -- Pcall
 	uGeneric = false, -- Loaded

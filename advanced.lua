@@ -4,24 +4,34 @@ function NeP.Protected.Advanced()
 	if CancelPendingSpell and CastAtPosition and IsAoEPending then
 		function NeP.Engine.CastGround(spell, target)
 			local stickyValue = GetCVar("deselectOnClick")
-			local rX, rY = math.random(), math.random()
-			local oX, oY, oZ = ObjectPosition(target)
-			if oX then oX = oX + rX; oY = oY + rY end
-			NeP.Engine.Cast(spell, target)
-			if oX then CastAtPosition(oX, oY, oZ) end
-			CancelPendingSpell()
-			if not NeP.timeOut.check('groundCast') then
-				NeP.timeOut.set('groundCast', 0.05, function()
-					NeP.Engine.Cast(spell)
-					if IsAoEPending() then
-						SetCVar("deselectOnClick", "0")
-						CameraOrSelectOrMoveStart(1)
-						CameraOrSelectOrMoveStop(1)
-						SetCVar("deselectOnClick", "1")
-						SetCVar("deselectOnClick", stickyValue)
-						CancelPendingSpell()
-					end
-				end)
+			if UnitExists(target) and target ~= 'mouseover' then
+				local rX, rY = math.random(), math.random()
+				local oX, oY, oZ = ObjectPosition(target)
+				if oX then oX = oX + rX; oY = oY + rY end
+				NeP.Engine.Cast(spell)
+				if oX then CastAtPosition(oX, oY, oZ) end
+				CancelPendingSpell()
+				if not NeP.timeOut.check('groundCast') then
+					NeP.timeOut.set('groundCast', 0.05, function()
+						NeP.Engine.Cast(spell)
+						if IsAoEPending() then
+							SetCVar("deselectOnClick", "0")
+							CameraOrSelectOrMoveStart(1)
+							CameraOrSelectOrMoveStop(1)
+							SetCVar("deselectOnClick", "1")
+							SetCVar("deselectOnClick", stickyValue)
+							CancelPendingSpell()
+						end
+					end)
+				end
+			else
+				local stickyValue = GetCVar("deselectOnClick")
+				SetCVar("deselectOnClick", "0")
+				CameraOrSelectOrMoveStart(1)
+				NeP.Engine.Cast(spell)
+				CameraOrSelectOrMoveStop(1)
+				SetCVar("deselectOnClick", "1")
+				SetCVar("deselectOnClick", stickyValue)
 			end
 		end
 	end
