@@ -67,6 +67,20 @@ function NeP.Protected.Advanced()
 		return false
 	end
 
+	if UnitCombatReach then
+		local _rangeTable = {
+			['melee'] = 1.5,
+			['ranged'] = 40,
+		}
+
+		function NeP.Engine.UnitAttackRange(unitA, unitB, rType)
+			if rType then
+				return _rangeTable[rType] + UnitCombatReach(unitA) + UnitCombatReach(unitB)
+			end
+			return 0
+		end
+	end
+
 	local losFlags = bit.bor(0x10, 0x100)
 	local ignoreLOS = {
 		[76585] = '',	-- Ragewing the Untamed (UBRS)
