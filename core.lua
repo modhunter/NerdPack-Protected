@@ -1,5 +1,5 @@
 NeP.Protected = {
-	Version = 1.7,
+	Version = 1.8,
 	Unlocker = nil,
 	cGeneric = false, -- Pcall
 	uGeneric = false, -- Loaded
@@ -52,11 +52,15 @@ C_Timer.NewTicker(1, (function()
 		if IsHackEnabled then
 			pT.Advanced()
 			pT.uAdvanced = true
-			pT.Unlocker = 'FireHack'
 			if EWT then
 				NeP.Core.Print('|cffff0000Found:|r EasyWoWToolBox')
+				pT.Unlocker = 'EWT'
+			elseif FireHack then
+				NeP.Core.Print('|cffff0000Found:|r FireHack')
+				pT.Unlocker = 'FireHack'
 			else
 				NeP.Core.Print('|cffff0000Found:|r Advanced Unlocker')
+				pT.Unlocker = 'Advanced'
 			end
 		-- Generic
 		elseif pT.cGeneric then
