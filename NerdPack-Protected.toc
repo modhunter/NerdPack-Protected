@@ -5,6 +5,7 @@
 ## Author: MrTheSoulz
 
 core.lua
-generic.lua
-advanced.lua
-pixelmagic.lua
+unlockers\generic.lua
+unlockers\advanced.lua
+unlockers\pixelmagic.lua
+conditions.lua
