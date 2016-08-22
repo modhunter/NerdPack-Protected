@@ -7,3 +7,4 @@
 core.lua
 generic.lua
 advanced.lua
+pixelmagic.lua

@@ -1,9 +1,7 @@
 NeP.Protected = {
-	Version = 1.8,
+	Version = 1.9,
 	Unlocker = nil,
-	cGeneric = false, -- Pcall
-	uGeneric = false, -- Loaded
-	uAdvanced = false -- Loaded
+	Generic_Check = false -- Loaded
 }
 
 -- Core version check
@@ -15,7 +13,11 @@ else
 end
 
 local pT = NeP.Protected
-local ranOnce = false
+
+local function foundU(name)
+	pT.Unlocker = name
+	NeP.Core.Print('|cffff0000Found:|r '..name)
+end
 
 NeP.Listener.register('ADDON_ACTION_FORBIDDEN', function(...)
 	local addon, event = ...
@@ -26,48 +28,43 @@ NeP.Listener.register('ADDON_ACTION_FORBIDDEN', function(...)
 end)
 
 NeP.Interface.CreatePlugin('|cffff0000Unlock! |rV:'..pT.Version, function()
-	pT.cGeneric = false
-	pT.uGeneric = false
-	pT.uAdvanced = false
-	pcall(RunMacroText, '/run NeP.Protected.cGeneric = true')
-	if not pT.cGeneric then 
-		NeP.Core.Print('Failed to Unlock...')
-		NeP.Engine.FaceRoll()
-	end
+	pT.Unlocker = nil
+	pT.Generic_Check = false
+	NeP.Engine.FaceRoll()
+	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
 end)
 
 NeP.DSL.RegisterConditon("advanced", function()
 	return IsHackEnabled ~= nil
 end)
 
+NeP.Listener.register('Generic_Check', 'PLAYER_LOGIN', function(...)
+	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
+end)
+
 C_Timer.NewTicker(1, (function()
-	--local Running = NeP.DSL.get('toggle')('mastertoggle')
-	if not pT.uGeneric and not pT.uAdvanced then
-		-- Everthing in here will only run once
-		if not ranOnce then
-			pcall(RunMacroText, '/run NeP.Protected.cGeneric = true')
-			ranOnce = true
-		end
-		-- Advanced
-		if IsHackEnabled then
+	if not pT.Unlocker then
+		--EasyWoWToolBox
+		if EWT then
+			foundU('EasyWoWToolBox')
 			pT.Advanced()
-			pT.uAdvanced = true
-			if EWT then
-				NeP.Core.Print('|cffff0000Found:|r EasyWoWToolBox')
-				pT.Unlocker = 'EWT'
-			elseif FireHack then
-				NeP.Core.Print('|cffff0000Found:|r FireHack')
-				pT.Unlocker = 'FireHack'
-			else
-				NeP.Core.Print('|cffff0000Found:|r Advanced Unlocker')
-				pT.Unlocker = 'Advanced'
-			end
+		-- FireHack
+		elseif FireHack then
+			foundU('FireHack')
+			pT.Advanced()
+		-- Pixel Magic
+		elseif pT.uPixelMagic then
+			foundU('PixelMagic')
+			NeP.Protected.PixelMagic()
 		-- Generic
-		elseif pT.cGeneric then
+		elseif pT.Generic_Check then
+			foundU('Generic Unlocker')
 			pT.Generic()
-			pT.uGeneric = true
-			pT.Unlocker = 'Generic'
-			NeP.Core.Print('|cffff0000Found:|r Generic Unlocker')
+		end
+		-- Things to execute after we found a unlocker
+		if pT.Unlocker then
+			-- Remove faceroll timer
+			NeP.Timer.Unregister('nep_faceroll')
 		end
 	end
 end), nil)
