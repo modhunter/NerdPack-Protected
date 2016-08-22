@@ -34,10 +34,6 @@ NeP.Interface.CreatePlugin('|cffff0000Unlock! |rV:'..pT.Version, function()
 	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
 end)
 
-NeP.DSL.RegisterConditon("advanced", function()
-	return IsHackEnabled ~= nil
-end)
-
 NeP.Listener.register('Generic_Check', 'PLAYER_LOGIN', function(...)
 	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
 end)
