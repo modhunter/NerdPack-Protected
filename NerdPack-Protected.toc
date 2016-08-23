@@ -4,8 +4,4 @@
 ## Interface: 70000
 ## Author: MrTheSoulz
 
-core.lua
-unlockers\generic.lua
-unlockers\advanced.lua
-unlockers\pixelmagic.lua
-conditions.lua
+files.lua

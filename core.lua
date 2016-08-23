@@ -1,11 +1,11 @@
 NeP.Protected = {
-	Version = 1.9,
+	Version = 1.10,
 	Unlocker = nil,
 	Generic_Check = false -- Loaded
 }
 
 -- Core version check
-if NeP.Info.Version >= 70.1 then
+if NeP.Info.Version >= 70.9 then
 	NeP.Core.Print('Loaded Protected Module v:'..NeP.Protected.Version)
 else
 	NeP.Core.Print('Failed to load Protected Module.\nYour Core is outdated.')
