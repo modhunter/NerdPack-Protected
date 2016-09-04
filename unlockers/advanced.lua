@@ -68,14 +68,13 @@ function NeP.Protected.Advanced()
 	end
 
 	if UnitCombatReach then
-		local _rangeTable = {
+		local rangeTable = {
 			['melee'] = 1.5,
 			['ranged'] = 40,
 		}
-
 		function NeP.Engine.UnitAttackRange(unitA, unitB, rType)
-			if rType then
-				return _rangeTable[rType] + UnitCombatReach(unitA) + UnitCombatReach(unitB)
+			if rangeTable[rType] and UnitExist(unitA) and UnitExist(unitB) then
+				return rangeTable[rType] + UnitCombatReach(unitA) + UnitCombatReach(unitB)
 			end
 			return 0
 		end

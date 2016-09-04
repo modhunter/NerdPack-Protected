@@ -30,7 +30,7 @@ function NeP.Protected.Generic()
 	end
 
 	function NeP.Engine.UseInvItem(slot)
-	UseInventoryItem(slot)
+		UseInventoryItem(slot)
 	end
 
 end
