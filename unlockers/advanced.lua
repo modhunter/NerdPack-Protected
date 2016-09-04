@@ -73,7 +73,7 @@ function NeP.Protected.Advanced()
 			['ranged'] = 40,
 		}
 		function NeP.Engine.UnitAttackRange(unitA, unitB, rType)
-			if rangeTable[rType] and UnitExist(unitA) and UnitExist(unitB) then
+			if rangeTable[rType] and UnitExists(unitA) and UnitExists(unitB) then
 				return rangeTable[rType] + UnitCombatReach(unitA) + UnitCombatReach(unitB)
 			end
 			return 0
