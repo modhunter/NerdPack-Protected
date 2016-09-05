@@ -121,10 +121,8 @@ function NeP.Protected.Advanced()
 		for i=1, totalObjects do
 			local Obj = ObjectWithIndex(i)
 			if UnitGUID(Obj) and ObjectExists(Obj) then
-				if ObjectIsType(Obj, ObjectTypes.Unit) or ObjectIsType(Obj, ObjectTypes.GameObject) then
-					if NeP.Engine.Distance('player', Obj) <= 100 then
-						NeP.OM.addToOM(Obj)
-					end
+				if NeP.Engine.Distance('player', Obj) <= 100 then
+					NeP.OM.addToOM(Obj)
 				end
 			end
 		end
