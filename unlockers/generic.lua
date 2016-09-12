@@ -20,6 +20,18 @@ function NeP.Protected.Generic()
 		end
 	end
 
+	-- Distance
+	local FallBack_Distance = NeP.Engine.Distance
+	function NeP.Engine.Distance(unit1, unit2)
+		local y1, x1, z1, instance1 = UnitPosition(unit1)
+		local y2, x2, z2, instance2 = UnitPosition(unit2)
+		if instance1 == instance2 then
+			print('hit')
+			return ((x2 - x1) ^ 2 + (y2 - y1) ^ 2) ^ 0.5
+		end
+		return FallBack_Distance(unit1, unit2)
+	end
+
 	-- Macro
 	function NeP.Engine.Macro(text)
 		RunMacroText(text)
