@@ -5,7 +5,7 @@ NeP.Protected = {
 }
 
 -- Core version check
-if NeP.Info.Version >= 70.9 then
+if NeP.Info.Version >= 71.1 then
 	NeP.Core.Print('Loaded Protected Module v:'..NeP.Protected.Version)
 else
 	NeP.Core.Print('Failed to load Protected Module.\nYour Core is outdated.')
@@ -27,15 +27,14 @@ NeP.Listener.register('ADDON_ACTION_FORBIDDEN', function(...)
 	end
 end)
 
+NeP.DSL.RegisterConditon('advancedGround', function()
+	return CastAtPosition ~= nil
+end)
+
 NeP.Interface.CreatePlugin('|cffff0000Unlock! |rV:'..pT.Version, function()
 	pT.Unlocker = nil
 	pT.Generic_Check = false
 	NeP.Engine.FaceRoll()
-	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
-end)
-
-NeP.Listener.register('Generic_Check', 'PLAYER_LOGIN', function(...)
-	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
 end)
 
 C_Timer.NewTicker(1, (function()
@@ -62,5 +61,6 @@ C_Timer.NewTicker(1, (function()
 			-- Remove faceroll timer
 			NeP.Timer.Unregister('nep_faceroll')
 		end
+		pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
 	end
 end), nil)
