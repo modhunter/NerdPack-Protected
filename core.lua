@@ -1,5 +1,5 @@
 NeP.Protected = {
-	Version = 1.11,
+	Version = 1.12,
 	Unlocker = nil,
 	Generic_Check = false -- Loaded
 }
@@ -35,6 +35,11 @@ NeP.Interface.CreatePlugin('|cffff0000Unlock! |rV:'..pT.Version, function()
 	pT.Unlocker = nil
 	pT.Generic_Check = false
 	NeP.Engine.FaceRoll()
+	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
+end)
+
+NeP.Listener.register("PLAYER_LOGIN", function(...)
+	pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
 end)
 
 C_Timer.NewTicker(1, (function()
@@ -61,6 +66,5 @@ C_Timer.NewTicker(1, (function()
 			-- Remove faceroll timer
 			NeP.Timer.Unregister('nep_faceroll')
 		end
-		pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
 	end
 end), nil)
