@@ -57,6 +57,11 @@ C_Timer.NewTicker(1, (function()
 			foundU('PixelMagic')
 			NeP.Protected.PixelMagic()
 		-- Generic
+		elseif not pT.Generic_Check then
+			local Running = NeP.DSL.Get('toggle')(nil, 'mastertoggle')
+			if Running then
+				pcall(RunMacroText, '/run NeP.Protected.Generic_Check = true')
+			end
 		elseif pT.Generic_Check then
 			foundU('Generic Unlocker')
 			pT.Generic()
