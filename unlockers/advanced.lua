@@ -81,32 +81,14 @@ function NeP.Protected.Advanced()
 	end
 
 	local losFlags = bit.bor(0x10, 0x100)
-	local ignoreLOS = {
-		[76585] = '',	-- Ragewing the Untamed (UBRS)
-		[77063] = '',	-- Ragewing the Untamed (UBRS)
-		[77182] = '',	-- Oregorger (BRF)
-		[77891] = '',	-- Grasping Earth (BRF)
-		[77893] = '',	-- Grasping Earth (BRF)
-		[78981] = '',	-- Iron Gunnery Sergeant (BRF)
-		[81318] = '',	-- Iron Gunnery Sergeant (BRF)
-		[83745] = '',	-- Ragewing Whelp (UBRS)
-		[86252] = '',	-- Ragewing the Untamed (UBRS)
-		[56173] = '',	-- Deathwing (DragonSoul)
-		[56471] = '',	-- Mutated Corruption (Dragon Soul: The Maelstrom)
-		[57962] = '',	-- Deathwing (Dragon Soul: The Maelstrom)
-		[55294] = '',	-- Ultraxion (DragonSoul)
-		[56161] = '',	-- Corruption (DragonSoul)
-		[52409] = '',	-- Ragnaros (FireLands)
-		[87761] = '',
-	}
 		
 	function NeP.Engine.LineOfSight(a, b)
 		if ObjectExists(a) and ObjectExists(b) then
 			-- Workaround LoS issues.
 			local aCheck = select(6,strsplit('-',UnitGUID(a)))
 			local bCheck = select(6,strsplit('-',UnitGUID(b)))
-			if ignoreLOS[tonumber(aCheck)] ~= nil then return true end
-			if ignoreLOS[tonumber(bCheck)] ~= nil then return true end
+			if NeP.LoS_Ignore(aCheck) then return true end
+			if NeP.LoS_Ignore(bCheck) then return true end
 				
 			local ax, ay, az = ObjectPosition(a)
 			local bx, by, bz = ObjectPosition(b)
