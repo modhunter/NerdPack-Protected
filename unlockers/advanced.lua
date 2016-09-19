@@ -68,9 +68,18 @@ function NeP.Protected.Advanced()
 	end
 
 	if UnitCombatReach then
+
+		function NeP.Engine.UnitCombatRange(unitA, unitB)
+			if UnitExists(unitA) and UnitExists(unitB) then
+				local Distance = NeP.Engine.Distance(unitA, unitB)
+				return Distance - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
+			end
+			return 0
+		end
+
 		local rangeTable = {
-			['melee'] = 1.5,
-			['ranged'] = 40,
+			melee = 1.5,
+			ranged = 40,
 		}
 		function NeP.Engine.UnitAttackRange(unitA, unitB, rType)
 			if rangeTable[rType] and UnitExists(unitA) and UnitExists(unitB) then
@@ -78,6 +87,7 @@ function NeP.Protected.Advanced()
 			end
 			return 0
 		end
+		
 	end
 
 	local losFlags = bit.bor(0x10, 0x100)
