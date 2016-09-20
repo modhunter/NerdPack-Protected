@@ -17,7 +17,7 @@ function NeP.Protected.PixelMagic()
 	end
 
 	-- Hide it
-	NeP.Timer.Sync("nep_PixelMagic", function()
+	NeP.Timer.Sync("nep_PixelMagic", 1, function()
 		activeFrame:Hide()
 	end, 0)
 
