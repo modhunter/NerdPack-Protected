@@ -97,8 +97,8 @@ function NeP.Protected.Advanced()
 	function NeP.Engine.LineOfSight(a, b)
 		if ObjectExists(a) and ObjectExists(b) then
 			-- Dont Check LoS on Boss's
-			if NeP.LoS_Ignore(LibBoss.BossIDs[UnitID(target)]) then return true end
-			if NeP.LoS_Ignore(LibBoss.BossIDs[UnitID(target)]) then return true end
+			if LibBoss.BossIDs[UnitID(a)] then return true end
+			if LibBoss.BossIDs[UnitID(b)] then return true end
 				
 			local ax, ay, az = ObjectPosition(a)
 			local bx, by, bz = ObjectPosition(b)
