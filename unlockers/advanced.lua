@@ -94,11 +94,9 @@ function NeP.Protected.Advanced()
 		
 	function NeP.Engine.LineOfSight(a, b)
 		if ObjectExists(a) and ObjectExists(b) then
-			-- Workaround LoS issues.
-			local aCheck = select(6,strsplit('-',UnitGUID(a)))
-			local bCheck = select(6,strsplit('-',UnitGUID(b)))
-			if NeP.LoS_Ignore(aCheck) then return true end
-			if NeP.LoS_Ignore(bCheck) then return true end
+			-- Dont Check LoS on Boss's
+			if NeP.LoS_Ignore(LibBoss.BossIDs[UnitID(target)]) then return true end
+			if NeP.LoS_Ignore(LibBoss.BossIDs[UnitID(target)]) then return true end
 				
 			local ax, ay, az = ObjectPosition(a)
 			local bx, by, bz = ObjectPosition(b)
@@ -108,12 +106,12 @@ function NeP.Protected.Advanced()
 	end
 
 	-- Advanced OM
-	function NeP.OM.Maker()
-		local totalObjects = ObjectCount()
-		for i=1, totalObjects do
-			local Obj = ObjectWithIndex(i)
-			if UnitGUID(Obj) and ObjectExists(Obj) then
-				if NeP.Engine.Distance('player', Obj) <= 100 then
+	if not NeP.Interface.fetchKey('NePSettings', 'fOM_Generic', false) then
+		function NeP.OM.Maker()
+			local totalObjects = ObjectCount()
+			for i=1, totalObjects do
+				local Obj = ObjectWithIndex(i)
+				if UnitGUID(Obj) and ObjectExists(Obj) then
 					NeP.OM.addToOM(Obj)
 				end
 			end
