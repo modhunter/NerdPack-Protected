@@ -1,3 +1,5 @@
+local LibBoss = LibStub("LibBossIDs-1.0")
+
 function NeP.Protected.Advanced()
 
 	-- Cast on ground
