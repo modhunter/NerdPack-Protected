@@ -73,3 +73,25 @@ C_Timer.NewTicker(1, (function()
 		end
 	end
 end), nil)
+
+--[[
+	DESC: Checks if Object is a Blacklisted.
+	This will remove the Object from the OM cache.
+---------------------------------------------------]]
+local BlacklistedObjects = {
+	[76829] = '',		-- Slag Elemental (BrF - Blast Furnace)
+	[78463] = '',		-- Slag Elemental (BrF - Blast Furnace)
+	[60197] = '',		-- Scarlet Monastery Dummy
+	[64446] = '',		-- Scarlet Monastery Dummy
+	[93391] = '',		-- Captured Prisoner (HFC)
+	[93392] = '',		-- Captured Prisoner (HFC)
+	[93828] = '',		-- Training Dummy (HFC)
+	[234021] = '',
+	[234022] = '',
+	[234023] = '',
+}
+
+function NeP.BlacklistedObject(ObjID)
+	local ObjID = select(6,strsplit('-', UnitGUID(Obj)))
+	return BlacklistedObjects[tonumber(ObjID)] ~= nil
+end

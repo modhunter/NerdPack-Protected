@@ -113,7 +113,8 @@ function NeP.Protected.Advanced()
 			local totalObjects = ObjectCount()
 			for i=1, totalObjects do
 				local Obj = ObjectWithIndex(i)
-				if UnitGUID(Obj) and ObjectExists(Obj) then
+				if UnitGUID(Obj) and ObjectExists(Obj)
+				and not NeP.BlacklistedObject(Obj) then
 					NeP.OM.addToOM(Obj)
 				end
 			end
