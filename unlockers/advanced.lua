@@ -37,12 +37,12 @@ function NeP.Protected.Advanced()
 	end
 
 	function NeP.Engine.UseItem(name, target)
-		NeP.Engine.insertToLog('Item', item, target)
+		NeP.Engine:insertToLog('Item', item, target)
 		UseItemByName(name, target)
 	end
 
 	function NeP.Engine.UseInvItem(slot)
-		NeP.Engine.insertToLog('Item', item, target)
+		NeP.Engine:insertToLog('Item', item, target)
 		UseInventoryItem(slot)
 	end
 
