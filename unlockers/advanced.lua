@@ -4,7 +4,9 @@ function NeP.Protected.Advanced()
 
 	-- Cast on ground
 	if CancelPendingSpell and CastAtPosition and IsAoEPending then
+		local fallbackGround = NeP.Engine.CastGround
 		function NeP.Engine.CastGround(spell, target)
+			NeP.Engine:insertToLog('Spell', spell, target)
 			local stickyValue = GetCVar("deselectOnClick")
 			if UnitExists(target) then
 				local rX, rY = math.random(), math.random()
@@ -14,19 +16,14 @@ function NeP.Protected.Advanced()
 				if oX then CastAtPosition(oX, oY, oZ) end
 				CancelPendingSpell()
 			else
-				local stickyValue = GetCVar("deselectOnClick")
-				SetCVar("deselectOnClick", "0")
-				CameraOrSelectOrMoveStart(1)
-				NeP.Engine.Cast(spell)
-				CameraOrSelectOrMoveStop(1)
-				SetCVar("deselectOnClick", "1")
-				SetCVar("deselectOnClick", stickyValue)
+				fallbackGround(spell, target)
 			end
 		end
 	end
 
 	-- Cast
 	function NeP.Engine.Cast(spell, target)
+		NeP.Engine:insertToLog('Spell', spell, target)
 		if type(spell) == "number" then
 			CastSpellByID(spell, target)
 		else
@@ -40,10 +37,12 @@ function NeP.Protected.Advanced()
 	end
 
 	function NeP.Engine.UseItem(name, target)
+		NeP.Engine.insertToLog('Item', item, target)
 		UseItemByName(name, target)
 	end
 
 	function NeP.Engine.UseInvItem(slot)
+		NeP.Engine.insertToLog('Item', item, target)
 		UseInventoryItem(slot)
 	end
 
