@@ -91,7 +91,7 @@ local BlacklistedObjects = {
 	[234023] = '',
 }
 
-function NeP.BlacklistedObject(ObjID)
+function NeP.BlacklistedObject(Obj)
 	local ObjID = select(6,strsplit('-', UnitGUID(Obj)))
 	return BlacklistedObjects[tonumber(ObjID)] ~= nil
 end
