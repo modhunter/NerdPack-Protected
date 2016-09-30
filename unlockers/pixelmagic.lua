@@ -22,13 +22,11 @@ function NeP.Protected.PixelMagic()
 
 	-- cast on ground
 	function NeP.Engine.CastGround(spell, target)
-		NeP.Engine:insertToLog('Spell', spell, target)
 		showActiveSpell(spell)
 	end
 
 	-- Cast
 	function NeP.Engine.Cast(spell, target)
-		NeP.Engine:insertToLog('Spell', spell, target)
 		showActiveSpell(spell)
 	end
 
