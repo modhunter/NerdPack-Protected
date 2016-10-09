@@ -16,7 +16,7 @@ local Generic_t = {
 		local stickyValue = GetCVar("deselectOnClick")
 		SetCVar("deselectOnClick", "0")
 		CameraOrSelectOrMoveStart(1)
-		NeP.Engine.Cast(spell)
+		NeP.Protected.Cast(spell)
 		CameraOrSelectOrMoveStop(1)
 		SetCVar("deselectOnClick", "1")
 		SetCVar("deselectOnClick", stickyValue)
