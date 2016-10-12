@@ -34,22 +34,10 @@ local Generic_t = {
 
 local FireHack_T = {
 	Distance = function (a, b)
-		if ObjectExists(a) and ObjectExists(b) then
-			local ax, ay, az = ObjectPosition(b)
-			local bx, by, bz = ObjectPosition(a)
-			return math.sqrt(((bx-ax)^2) + ((by-ay)^2) + ((bz-az)^2))
-		end
-		return 0
+		return GetDistanceBetweenObjects(a,b)
 	end,
 	Infront = function (a, b)
-		if ObjectExists(a) and ObjectExists(b) then
-			local aX, aY, aZ = ObjectPosition(b)
-			local bX, bY, bZ = ObjectPosition(a)
-			local playerFacing = GetPlayerFacing()
-			local facing = math.atan2(bY - aY, bX - aX) % 6.2831853071796
-			return math.abs(math.deg(math.abs(playerFacing - (facing)))-180) < 90
-		end
-		return false
+		return ObjectIsFacing(a,b)
 	end,
 	CastGround = function (spell, target)
 		local stickyValue = GetCVar('deselectOnClick')
@@ -66,21 +54,8 @@ local FireHack_T = {
 	end,
 	UnitCombatRange = function (unitA, unitB)
 		if UnitExists(unitA) and UnitExists(unitB) then
-			local Distance = NeP.Engine.Distance(unitA, unitB)
+			local Distance = NeP.Protected.Distance(unitA, unitB)
 			return Distance - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
-		end
-		return 0
-	end,
-	UnitCombatRange = function (unitA, unitB)
-		if UnitExists(unitA) and UnitExists(unitB) then
-			local Distance = NeP.Engine.Distance(unitA, unitB)
-			return Distance - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
-		end
-		return 0
-	end,
-	UnitAttackRange = function (unitA, unitB, rType)
-		if rangeTable[rType] and UnitExists(unitA) and UnitExists(unitB) then
-			return rangeTable[rType] + UnitCombatReach(unitA) + UnitCombatReach(unitB)
 		end
 		return 0
 	end,
