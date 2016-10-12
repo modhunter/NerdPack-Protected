@@ -73,13 +73,20 @@ local FireHack_T = {
 	end
 }
 
+local FireHack_OM = function()
+	for i=1, ObjectCount() do
+		local Obj = ObjectWithIndex(i)
+		NeP.OM:Add(Obj)
+	end
+end
+
 NeP.Protected:AddUnlocker('EasyWoWToolBox', function ()
 	return EWT
-end, Generic_t, FireHack_T)
+end, Generic_t, FireHack_T, FireHack_OM)
 
 NeP.Protected:AddUnlocker('FireHack', function ()
 	return FireHack
-end, Generic_t, FireHack_T)
+end, Generic_t, FireHack_T, FireHack_OM)
 
 NeP.Protected:AddUnlocker('Generic', function ()
 	pcall(RunMacroText, '/run NeP.Unlocked = true')
