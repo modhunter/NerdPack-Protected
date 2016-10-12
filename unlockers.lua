@@ -66,14 +66,14 @@ local FireHack_T = {
 	end,
 	UnitCombatRange = function (unitA, unitB)
 		if UnitExists(unitA) and UnitExists(unitB) then
-			local Distance = NeP.Engine.Distance(unitA, unitB)
+			local Distance = NeP.Protected.Distance(unitA, unitB)
 			return Distance - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
 		end
 		return 0
 	end,
 	UnitCombatRange = function (unitA, unitB)
 		if UnitExists(unitA) and UnitExists(unitB) then
-			local Distance = NeP.Engine.Distance(unitA, unitB)
+			local Distance = NeP.Protected.Distance(unitA, unitB)
 			return Distance - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
 		end
 		return 0
