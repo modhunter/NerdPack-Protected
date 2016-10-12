@@ -59,22 +59,6 @@ local FireHack_T = {
 		end
 		return 0
 	end,
-<<<<<<< HEAD
-=======
-	UnitCombatRange = function (unitA, unitB)
-		if UnitExists(unitA) and UnitExists(unitB) then
-			local Distance = NeP.Protected.Distance(unitA, unitB)
-			return Distance - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
-		end
-		return 0
-	end,
-	UnitAttackRange = function (unitA, unitB, rType)
-		if rangeTable[rType] and UnitExists(unitA) and UnitExists(unitB) then
-			return rangeTable[rType] + UnitCombatReach(unitA) + UnitCombatReach(unitB)
-		end
-		return 0
-	end,
->>>>>>> origin/NeP-2.0
 	LineOfSight = function (a, b)
 		if ObjectExists(a) and ObjectExists(b) then
 			-- Dont Check LoS on Boss's
