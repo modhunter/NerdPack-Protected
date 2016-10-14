@@ -3,11 +3,8 @@ local LibBoss = LibStub('LibBossIDs-1.0')
 local n_name, NeP_Protected = ...
 
 NeP.Listener:Add('NeP_Unlocker','ADDON_ACTION_FORBIDDEN', function(addon)
-	print('called', addon)
 	if addon == n_name then
-		print('pass')
 		StaticPopup1:Hide()
-		NeP.Core:Print('Didnt find any unlocker, using faceroll.')
 	end
 end)
 
