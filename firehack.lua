@@ -16,13 +16,13 @@ function glb.FireHack.CastGround(spell, target)
 	local rX, rY = math.random(), math.random()
 	local oX, oY, oZ = ObjectPosition(target)
 	if oX then oX = oX + rX; oY = oY + rY end
-	self.Cast(spell)
+	glb.Generic.Cast(spell)
 	if oX then CastAtPosition(oX, oY, oZ) end
 	CancelPendingSpell()
 end
 
 function glb.FireHack.UnitCombatRange(unitA, unitB)
-	return self.Distance(unitA, unitB) - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
+	return glb.FireHack.Distance(unitA, unitB) - (UnitCombatReach(unitA) + UnitCombatReach(unitB))
 end
 
 local losFlags = bit.bor(0x10, 0x100)

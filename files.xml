@@ -3,8 +3,8 @@
 
 	<Script file="external\LibDraw.lua" />
 	<Script file="conditions.lua" />
-	<Script file="ewt.lua" />
-	<Script file="firehack.lua" />
 	<Script file="generic.lua" />
+	<Script file="firehack.lua" />
+	<Script file="ewt.lua" />
 
 </Ui>
