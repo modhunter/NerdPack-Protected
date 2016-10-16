@@ -6,7 +6,7 @@ end)
 
 -- Generic
 glb.Generic = {}
-	
+
 function glb.Generic.Cast(spell, target)
 	CastSpellByName(spell, target)
 end
