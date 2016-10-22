@@ -12,6 +12,8 @@ function glb.FireHack.Infront(a, b)
 end
 
 function glb.FireHack.CastGround(spell, target)
+	-- this is to cast on cursor location
+	if not target then glb.Generic.CastGround(spell) end
 	local stickyValue = GetCVar('deselectOnClick')
 	local rX, rY = math.random(), math.random()
 	local oX, oY, oZ = ObjectPosition(target)
