@@ -1,7 +1,7 @@
 ## Title: |r[|cff0070deNerdPack|r] Protected
 ## Notes: A plugin for NerdPack.
 ## Dependencies: NerdPack
-## Interface: 71000
+## Interface: 70100
 ## Author: MrTheSoulz
 
 files.xml
