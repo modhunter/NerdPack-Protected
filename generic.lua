@@ -1,8 +1,25 @@
-local n_name, glb = ...
+local n_name, glb               = ...
+local NeP                       = NeP
+local CastSpellByName           = CastSpellByName
+local GetCVar                   = GetCVar
+local SetCVar                   = SetCVar
+local CameraOrSelectOrMoveStart = CameraOrSelectOrMoveStart
+local CameraOrSelectOrMoveStop  = CameraOrSelectOrMoveStop
+local RunMacroText              = RunMacroText
+local UseItemByName             = UseItemByName
+local UseInventoryItem          = UseInventoryItem
+local LB                        = LibStub('LibBossIDs-1.0').BossIDs
+local GetDistanceBetweenObjects = GetDistanceBetweenObjects
+local ObjectIsFacing            = ObjectIsFacing
+local CancelPendingSpell        = CancelPendingSpell
 
-NeP.Listener:Add('NeP_Unlocker','ADDON_ACTION_FORBIDDEN', function(addon)
-	if addon == n_name then StaticPopup1:Hide() end
-end)
+-- Advanced APIs
+local ObjectPosition  = ObjectPosition
+local CastAtPosition  = CastAtPosition
+local TraceLine       = TraceLine
+local UnitCombatReach = UnitCombatReach
+local ObjectWithIndex = ObjectWithIndex
+local ObjectCount     = ObjectCount
 
 -- Generic
 glb.Generic = {}
@@ -11,7 +28,7 @@ function glb.Generic.Cast(spell, target)
 	CastSpellByName(spell, target)
 end
 
-function glb.Generic.CastGround(spell, target)
+function glb.Generic.CastGround(spell)
 	local stickyValue = GetCVar("deselectOnClick")
 	SetCVar("deselectOnClick", "0")
 	CameraOrSelectOrMoveStart(1)
@@ -33,8 +50,6 @@ function glb.Generic.UseInvItem(name)
 	UseInventoryItem(name)
 end
 
-local LB = LibStub('LibBossIDs-1.0').BossIDs
-
 glb.FireHack = {}
 
 function glb.FireHack.Distance(a, b)
@@ -48,7 +63,6 @@ end
 function glb.FireHack.CastGround(spell, target)
 	-- this is to cast on cursor location
 	if not target then glb.Generic.CastGround(spell) end
-	local stickyValue = GetCVar('deselectOnClick')
 	local rX, rY = math.random(), math.random()
 	local oX, oY, oZ = ObjectPosition(target)
 	if oX then oX = oX + rX; oY = oY + rY end
