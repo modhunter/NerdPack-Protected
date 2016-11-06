@@ -8,7 +8,6 @@ local CameraOrSelectOrMoveStop  = CameraOrSelectOrMoveStop
 local RunMacroText              = RunMacroText
 local UseItemByName             = UseItemByName
 local UseInventoryItem          = UseInventoryItem
-local LB                        = LibStub('LibBossIDs-1.0').BossIDs
 local GetDistanceBetweenObjects = GetDistanceBetweenObjects
 local ObjectIsFacing            = ObjectIsFacing
 local CancelPendingSpell        = CancelPendingSpell
@@ -77,7 +76,8 @@ end
 
 local losFlags = bit.bor(0x10, 0x100)
 function glb.FireHack.LineOfSight(a, b)
-	if LB[NeP.Core:UnitID(a)] or LB[NeP.Core:UnitID(b)] then return true end
+	-- skip if its a boss
+	if NeP.BossID:Eval(a) or NeP.BossID:Eval(b) then return true end
 
 	local ax, ay, az = ObjectPosition(a)
 	local bx, by, bz = ObjectPosition(b)
